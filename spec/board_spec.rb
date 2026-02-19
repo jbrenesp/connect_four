@@ -11,4 +11,15 @@ RSpec.describe ConnectFour::Board do
       expect(board.grid.first.length).to eq(7)
     end
   end
+
+  describe '#token_drop' do
+    let(:board) { described_class.new }
+
+    it 'places a token in the bottom row of an empty column' do
+      board.token_drop(0, :X)  # drop :X in column 0
+
+      # bottom row = last element in grid
+      expect(board.grid.last[0]).to eq(:X)
+    end
+  end
 end
