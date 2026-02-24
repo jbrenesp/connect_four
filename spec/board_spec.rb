@@ -32,5 +32,15 @@ RSpec.describe ConnectFour::Board do
         expect(board.grid[4][3]).to eq(:O)
       end
     end
+    
+    context 'when the column is full' do
+      it 'returns false and does not places a token' do
+        6.times {board.token_drop(0, :X) }
+        result = board.token_drop(0, :O)
+        
+        expect(result).to eq(false)
+        expect(board.grid.map { |row| row[0]}).to all(eq(:X))
+      end
+    end
   end
 end
