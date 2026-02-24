@@ -11,6 +11,7 @@ module ConnectFour
     end
 
     def token_drop(column, token)
+      return false if full_column?(column)
       (ROWS.size - 1).downto(0) do |row|
         if grid[row][column].nil?
           grid[row][column] = token
@@ -19,8 +20,8 @@ module ConnectFour
       end
     end
 
-    def full_column?
-
+    def full_column?(column)
+      grid[0][column] != nil
     end
 
     def full_row?
