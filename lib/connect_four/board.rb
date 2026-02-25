@@ -31,7 +31,7 @@ module ConnectFour
       grid[0][column] != nil
     end
 
-    def four_in_a_row?(token)
+    def horizontal_win?(token)
       grid.each do |row|
         count = 0
         row.each do |cell|
@@ -45,7 +45,26 @@ module ConnectFour
       end
       false
     end
-          
+
+    def vertical_win?(token)
+      (0..6).each do |column|
+        count = 0
+        (0..5).each do |row|
+          if grid[row][column] == token
+            count += 1
+            return true if count == 4
+          else
+            count = 0
+          end
+        end
+      end
+      false
+    end
+    
+    def four_in_a_row?(token)
+      horizontal_win?(token) || vertical_win?(token)
+    end
+           
 
     def full_diagonal?
 

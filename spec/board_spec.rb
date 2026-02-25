@@ -73,5 +73,24 @@ RSpec.describe ConnectFour::Board do
         expect(board.four_in_a_row?("O")).to be false
       end
     end
+    context 'when there are four vertical O tokens in a column' do
+      it 'returns true' do
+        board.token_drop(0, "O")
+        board.token_drop(0, "O")
+        board.token_drop(0, "O")
+        board.token_drop(0, "O")
+        
+        expect(board.four_in_a_row?("O")).to be true
+      end
+
+      it 'returns false for the other token' do
+        board.token_drop(0, "O")
+        board.token_drop(0, "O")
+        board.token_drop(0, "O")
+        board.token_drop(0, "O")
+        
+        expect(board.four_in_a_row?("X")).to be false
+      end
+    end
   end
 end
