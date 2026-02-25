@@ -10,6 +10,13 @@ module ConnectFour
       @grid = Array.new(ROWS.size) {Array.new(COLUMNS.size)}
     end
 
+    def render
+      grid.each do |row|
+        puts row.map { |cell| cell.nil? ? "." : cell }.join(" ")
+      end
+      puts "0 1 2 3 4 5 6"
+    end
+
     def token_drop(column, token)
       return false if full_column?(column)
       (ROWS.size - 1).downto(0) do |row|
@@ -33,5 +40,10 @@ module ConnectFour
     end
   end
 end
+
+board = ConnectFour::Board.new
+board.token_drop(0, "X")
+board.token_drop(0, "O")
+board.render
 
 
