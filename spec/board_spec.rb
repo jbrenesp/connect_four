@@ -42,5 +42,36 @@ RSpec.describe ConnectFour::Board do
         expect(board.grid.map { |row| row[0]}).to all(eq(:X))
       end
     end
+
+    context 'when there are four horizontal O tokens in a row' do
+      it 'returns true' do
+        board.token_drop(0, "O")
+        board.token_drop(1, "O")
+        board.token_drop(2, "O")
+        board.token_drop(3, "O")
+        
+
+        expect(board.four_in_a_row?("O")).to be true
+      end
+    end
+
+    context 'when there are four horizontal X tokens in a row' do
+      it 'returns true' do
+        board.token_drop(0, "X")
+        board.token_drop(1, "X")
+        board.token_drop(2, "X")
+        board.token_drop(3, "X")
+        
+
+        expect(board.four_in_a_row?("X")).to be true
+      end
+      it 'returns false for the other token' do
+        board.token_drop(0, "X")
+        board.token_drop(1, "X")
+        board.token_drop(2, "X")
+        board.token_drop(3, "X")
+        expect(board.four_in_a_row?("O")).to be false
+      end
+    end
   end
 end
