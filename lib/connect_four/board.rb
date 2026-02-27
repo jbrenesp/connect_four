@@ -61,20 +61,31 @@ module ConnectFour
       false
     end
     
-    def four_in_a_row?(token)
-      horizontal_win?(token) || vertical_win?(token)
-    end
+    
            
 
-    def full_diagonal?
+    def diagonal_win?(token)
+      (3..5).each do |row|
+        (0..3).each do |col|
+          if (0..3).all? { |i| grid[row - i][col + i] == token }
+            return true
+          end
+        end
+      end
+      false  
+    end
 
+
+    def four_in_a_row?(token)
+      horizontal_win?(token) || vertical_win?(token) || diagonal_win?(token)
     end
   end
 end
 
 board = ConnectFour::Board.new
-board.token_drop(0, "X")
 board.token_drop(0, "O")
-board.render
+board.token_drop(1, "O")
+board.token_drop(2, "O")
+board.token_drop(3, "O")
 
 
