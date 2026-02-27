@@ -72,6 +72,14 @@ module ConnectFour
           end
         end
       end
+
+      (0..2).each do |row|
+        (0..3).each do |col|
+          if (0..3).all? { |i| grid[row + i][col + i] == token }
+            return true
+          end
+        end
+      end
       false  
     end
 

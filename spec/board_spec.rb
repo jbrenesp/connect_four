@@ -107,5 +107,32 @@ RSpec.describe ConnectFour::Board do
         expect(board.four_in_a_row?("O")).to be true
       end
     end
+    
+    context 'when there are four diagnoal X tokens (top-left to bottom-right)' do
+      it 'returns true' do
+       board.token_drop(0, "X")  
+        board.token_drop(0, "X")  
+        board.token_drop(0, "X")  
+        board.token_drop(0, "X")  
+
+        board.token_drop(1, "O") 
+        board.token_drop(1, "X")
+        board.token_drop(1, "X")
+        board.token_drop(1, "X")
+
+        board.token_drop(2, "O")
+        board.token_drop(2, "O")
+        board.token_drop(2, "X")
+        board.token_drop(2, "X")
+
+        board.token_drop(3, "O")
+        board.token_drop(3, "O")
+        board.token_drop(3, "O")
+        board.token_drop(3, "X") 
+
+        expect(board.four_in_a_row?("X")).to be true
+      end
+    end
   end
 end
+
