@@ -2,8 +2,13 @@
 
 require_relative 'spec_helper'
 require_relative '../lib/connect_four/player'
+require_relative '../lib/connect_four/board'
 
 RSpec.describe ConnectFour::Player do
+  let(:player) {described_class.new("Jose", "X")}
+  let(:board) {ConnectFour::Board.new}
+
+
   describe '#initialize' do
     it 'stores the player name and token' do
       player = described_class.new("Jose", "X")
