@@ -46,4 +46,17 @@ RSpec.describe ConnectFour::Game do
       expect(game.current_player).not_to eq(first_player)
     end
   end
+  
+  describe '#winner?' do
+    it 'returns true if the current player has four in a row' do
+      # force a horizontal win for player 1
+      4.times { |col| game.board.token_drop(col, "X") }
+      expect(game.winner?).to be true
+    end
+    
+    it 'returns false if there is no winner' do
+      game.board.token_drop(0, "X")
+      expect(game.winner?).to be false
+    end
+  end
 end

@@ -29,5 +29,9 @@ module ConnectFour
       board.token_drop(column, current_player.token)
       switch_turn
     end
+    
+    def winner?
+      board.four_in_a_row?(current_player.token)
+    end
   end
 end
