@@ -31,4 +31,19 @@ RSpec.describe ConnectFour::Game do
       expect(game.current_player).not_to eq(first_player)
     end
   end
+  
+  describe '#play_turn' do
+    it 'drops the current player token in the chosen column' do
+      allow(game.current_player).to receive(:choose_column).and_return(0)
+      game.play_turn
+      expect(game.board.grid.last[0]).to eq("X")
+    end
+    
+    it 'switches the turn after playing' do
+      allow(game.current_player).to receive(:choose_column).and_return(0)
+      first_player = game.current_player
+      game.play_turn
+      expect(game.current_player).not_to eq(first_player)
+    end
+  end
 end

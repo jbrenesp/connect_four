@@ -23,5 +23,11 @@ module ConnectFour
     def switch_turn
       @current_player_index = 1 - @current_player_index
     end
+    
+    def play_turn
+      column = current_player.choose_column(board)
+      board.token_drop(column, current_player.token)
+      switch_turn
+    end
   end
 end
