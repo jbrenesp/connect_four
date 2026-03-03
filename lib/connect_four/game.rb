@@ -41,11 +41,17 @@ module ConnectFour
     
     def play
       loop do
-        play_turn
+        board.render  # show the current board
+        puts "#{current_player.name}'s turn (#{current_player.token}):"
+        play_turn  # this should ask the player for a column and drop the token
+        
         if winner?
+          board.render
           puts "#{current_player.name} wins!"
           break
+        
         elsif draw?
+          board.render
           puts "It's a tie!"
           break
         else
