@@ -3,6 +3,7 @@ module ConnectFour
   
   class Board
     attr_reader :grid
+    attr_accessor :grid
     ROWS = (0..5).to_a
     COLUMNS = (0..6).to_a
     

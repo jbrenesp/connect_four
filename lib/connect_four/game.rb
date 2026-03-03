@@ -27,13 +27,31 @@ module ConnectFour
     def play_turn
       column = current_player.choose_column(board)
       board.token_drop(column, current_player.token)
-      switch_turn unless winner?
     end
-
-    
     
     def winner?
       board.four_in_a_row?(current_player.token)
+    end
+    
+    def draw?
+      board_full = board.grid.flatten.none?(&:nil?)
+      no_winner = !board.four_in_a_row?("X") && !board.four_in_a_row?("O")
+      board_full && no_winner
+    end
+    
+    def play
+      loop do
+        play_turn
+        if winner?
+          puts "#{current_player.name} wins!"
+          break
+        elsif draw?
+          puts "It's a tie!"
+          break
+        else
+          switch_turn
+        end
+      end
     end
   end
 end
