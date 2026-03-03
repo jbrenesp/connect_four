@@ -27,8 +27,10 @@ module ConnectFour
     def play_turn
       column = current_player.choose_column(board)
       board.token_drop(column, current_player.token)
-      switch_turn
+      switch_turn unless winner?
     end
+
+    
     
     def winner?
       board.four_in_a_row?(current_player.token)

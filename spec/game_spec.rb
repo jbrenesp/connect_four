@@ -59,4 +59,19 @@ RSpec.describe ConnectFour::Game do
       expect(game.winner?).to be false
     end
   end
+  
+  describe '#play_turn' do
+    context 'when the current player wins' do
+      it 'does not switch turn after winning' do
+        # Setup a near-win situation
+        3.times { |col| game.board.token_drop(col, "X") }
+        # current player token is "X"
+        allow(game.current_player).to receive(:choose_column).and_return(3)
+        first_player = game.current_player
+        game.play_turn
+        # first player should still be current, because they won
+        expect(game.current_player).to eq(first_player)
+      end
+    end
+  end
 end
